@@ -31,9 +31,24 @@
 	  <td th:text="${FeatureCollection.type}"></td>
 	  <td th:text="${FeatureCollection.metadata.url}"></td>
 	  <td th:text="${FeatureCollection.metadata.count}"></td>
+	  <td th:text="${FeatureCollection.metadata.title}"></td>
 	<tbody>
       </table>
-
+      <h3>Earthquakes</h3>
+      <table>
+      	<thead>
+	  <th>id</th>
+	  <th>place</th>
+	  <th>mag</th>
+	</thead>
+	<tbody>
+	  <tr th:each="f: ${featureCollection.features}">
+	    <td><a th:href="${f."th:text="${f.id}"></td>
+	    <td th:text="${f.properties.place}"></td>
+	    <td th:text="${f.id.properties.mag}"></td>
+	  </tr>
+	</tbody>
+      </table>
       <div th:replace="bootstrap/bootstrap_footer.html"></div>
     </div>
     <div th:replace="bootstrap/bootstrap_scripts.html"></div>

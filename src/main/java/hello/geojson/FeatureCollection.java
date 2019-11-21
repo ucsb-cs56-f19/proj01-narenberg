@@ -18,8 +18,9 @@ public class FeatureCollection {
 	  *           * 
 	  *                * @param json String of json returned by API endpoint {@code /classes/search}
 	  *                     * @return a new FeatureCollection object
-	  *                          * @see <a href=
-	  *                               *      "https://tools.ietf.org/html/rfc7946">https://tools.ietf.org/html/rfc7946</a>
+	  *                          * @see <a href="https://tools.ietf.org/html/rfc7946">
+	  *                                 https://tools.ietf.org/html/rfc7946
+	  *                               </a>
 	  *                                    */
 	    public static FeatureCollection fromJSON(String json) {
 		            try {

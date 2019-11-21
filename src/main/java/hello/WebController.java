@@ -63,6 +63,6 @@ public class WebController {
 	    model.addAttribute("eqSearch", eqSearch);
 	    String json = e.getJSON(eqSearch.getDistance(), eqSearch.getMinmag());
 	    model.addAttribute("json", json);
-	    return "earthquakes/results"
+	    return "earthquakes/results";
     }
 }

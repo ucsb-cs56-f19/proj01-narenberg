@@ -43,7 +43,8 @@
 	</thead>
 	<tbody>
 	  <tr th:each="f: ${featureCollection.features}">
-	    <td><a th:href="${f."th:text="${f.id}"></td>
+	    <td><a th:href="https://earthquake.usgs.gov/earthquakes/eventpage/${f.id}"th:text="${f.id}"></td>
+	    <td th:text="${FeatureCollection.metadata.count}"></td>
 	    <td th:text="${f.properties.place}"></td>
 	    <td th:text="${f.id.properties.mag}"></td>
 	  </tr>

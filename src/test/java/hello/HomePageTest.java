@@ -18,10 +18,12 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import hello.controllers.HomeController;
+
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(WebController.class)
+@WebMvcTest(HomeController.class)
 public class HomePageTest {
 
     @Autowired

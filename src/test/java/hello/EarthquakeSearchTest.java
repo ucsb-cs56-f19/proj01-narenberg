@@ -21,40 +21,40 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.junit.Before;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.authentication;
-
+import hello.controllers.EarthquakesController;
 
 @RunWith(SpringRunner.class)
-	@WebMvcTest(WebController.class)
+	@WebMvcTest(EarthquakesController.class)
 	public class EarthquakeSearchTest {
 
-		    @Autowired
-			        private MockMvc mvc;
+		@Autowired
+		private MockMvc mvc;
 
-		        @MockBean
-				    private AuthControllerAdvice aca;
+		@MockBean
+		private AuthControllerAdvice aca;
 
-			    @MockBean
-				        private ClientRegistrationRepository crr;
+		@MockBean
+		private ClientRegistrationRepository crr;
 
-			        private OAuth2User principal;
+		private OAuth2User principal;
 
 				    /**
 				     *      * Set up an OAuth mock user so that we can unit test protected endpoints
 				     *           */
 				    @Before
-					        public void setUpUser() {
-							        principal = OAuthUtils.createOAuth2User("Chris Gaucho", "cgaucho@example.com");
-								    }
+				    public void setUpUser() {
+				    	principal = OAuthUtils.createOAuth2User("Chris Gaucho", "cgaucho@example.com");
+				    }
 
-				        @Test
-						    @WithMockUser
-						        public void getEarthquakeSearch() throws Exception {
-								        mvc.perform(MockMvcRequestBuilders.get("/earthquakes/search")
-											            .with(authentication(OAuthUtils.getOauthAuthenticationFor(principal)))
-												                .accept(MediaType.TEXT_HTML))
-										            .andExpect(status().isOk())
-											                .andExpect(xpath("//title").exists())
-													            .andExpect(xpath("//title").string("Earthquake Search"));
-									    }
+				    @Test
+				    @WithMockUser
+				    public void getEarthquakeSearch() throws Exception {
+				    	mvc.perform(MockMvcRequestBuilders.get("/earthquakes/search")
+				    		.with(authentication(OAuthUtils.getOauthAuthenticationFor(principal)))
+				    		.accept(MediaType.TEXT_HTML))
+				    	.andExpect(status().isOk())
+				    	.andExpect(xpath("//title").exists())
+				    	.andExpect(xpath("//title").string("Earthquake Search"));
+				    }
 	}
 

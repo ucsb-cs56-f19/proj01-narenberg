@@ -9,32 +9,32 @@
       <div th:replace="bootstrap/bootstrap_nav_header.html"></div>
       <h2> Results</h2>
       <table class="table">
-      	<thead>
-	  <tr>Type</tr>
-	</thead>
-	<tbody>
-	  <td th:text="${featureCollection.metadata.title}"></td>
-	  <td th:text="${eqSearch.distance}"></td>
-	  <td th:text="${eqSearch.minmag}"></td>
-	  <td th:text="${featureCollection.metadata.url}"></td>
-	  <td th:text="${featureCollection.metadata.count}"></td>
-	<tbody>
+        <thead>
+	      <tr>Type</tr>
+	    </thead>
+	    <tbody>
+		  <td th:text="${featureCollection.metadata.title}"></td>
+		  <td th:text="${eqSearch.distance}"></td>
+		  <td th:text="${eqSearch.minmag}"></td>
+		  <td th:text="${featureCollection.metadata.url}"></td>
+		  <td th:text="${featureCollection.metadata.count}"></td>
+	    </tbody>
       </table>
       <h3>Earthquakes</h3>
       <table class="table">
       	<thead>
-	  <th>id</th>
-	  <th>place</th>
-	  <th>mag</th>
-	</thead>
-	<tbody>
-	  <tr th:each="f: ${featureCollection.features}">
-	    <td><a th:href="'https://earthquake.usgs.gov/earthquakes/eventpage/' + ${f.id} + '/executive'" th:text="${f.id}"></td>
-	    <td th:text="${featureCollection.metadata.count}"></td>
-	    <td th:text="${f.properties.place}"></td>
-	    <td th:text="${f.properties.mag}"></td>
-	  </tr>
-	</tbody>
+	      <th>id</th>
+		  <th>place</th>
+		  <th>mag</th>
+		</thead>
+		<tbody>
+		  <tr th:each="f: ${featureCollection.features}">
+		    <td><a th:href="'https://earthquake.usgs.gov/earthquakes/eventpage/' + ${f.id} + '/executive'" th:text="${f.id}"></td>
+		    <td th:text="${featureCollection.metadata.count}"></td>
+		    <td th:text="${f.properties.place}"></td>
+		    <td th:text="${f.properties.mag}"></td>
+		  </tr>
+		</tbody>
       </table>
       <div th:replace="bootstrap/bootstrap_footer.html"></div>
     </div>

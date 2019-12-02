@@ -23,31 +23,31 @@ import java.util.HashSet;
 
 public class OAuthUtils {
 
-	    public static OAuth2User createOAuth2User(String name, String email) {
+	public static OAuth2User createOAuth2User(String name, String email) {
 
-		            Map<String, Object> authorityAttributes = new HashMap<>();
-			            authorityAttributes.put("key", "value");
+		Map<String, Object> authorityAttributes = new HashMap<>();
+		authorityAttributes.put("key", "value");
 
-				            GrantedAuthority authority = new OAuth2UserAuthority(authorityAttributes);
+		GrantedAuthority authority = new OAuth2UserAuthority(authorityAttributes);
 
-					            Map<String, Object> attributes = new HashMap<>();
-						            attributes.put("sub", "1234567890");
-							            attributes.put("name", name);
-								            attributes.put("email", email);
+		Map<String, Object> attributes = new HashMap<>();
+		attributes.put("sub", "1234567890");
+		attributes.put("name", name);
+		attributes.put("email", email);
 
-									            Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-										            authorities.add(authority);
+		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+		authorities.add(authority);
 
-											            return new DefaultOAuth2User(authorities, attributes, "sub");
-												        }
+		return new DefaultOAuth2User(authorities, attributes, "sub");
+	}
 
-	        public static Authentication getOauthAuthenticationFor(OAuth2User principal) {
+	public static Authentication getOauthAuthenticationFor(OAuth2User principal) {
 
-			        Collection<? extends GrantedAuthority> authorities = principal.getAuthorities();
+		Collection<? extends GrantedAuthority> authorities = principal.getAuthorities();
 
-				        String authorizedClientRegistrationId = "my-oauth-client";
+		String authorizedClientRegistrationId = "my-oauth-client";
 
-					        return new OAuth2AuthenticationToken(principal, authorities, authorizedClientRegistrationId);
-						    }
+		return new OAuth2AuthenticationToken(principal, authorities, authorizedClientRegistrationId);
+	}
 }
 

@@ -7,8 +7,25 @@
   <body>
     <div class="container">
       <div th:replace="bootstrap/bootstrap_nav_header.html"></div>
-      <h2>Results</h2>
-      <p th:text="${featureCollection}">
+        <h3>Locations</h3>
+        <table class="table">
+          <thead>
+            <th>Place ID</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Place</th>
+            <th>Type</th>
+          </thead>
+          <tbody>
+            <tr th:each="p: ${places}">
+              <td th:text="${p.place_id}"></td>
+              <td th:text="${p.lat}"></td>
+              <td th:text="${p.lon}"></td>
+              <td th:text="${p.display_name}"></td>
+              <td th:text="${p.type}"></td>
+            </tr>
+          </tbody>
+        </table>
       <div th:replace="bootstrap/bootstrap_footer.html"></div>
     </div>
     <div th:replace="bootstrap/bootstrap_scripts.html"></div>

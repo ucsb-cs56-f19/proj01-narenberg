@@ -22,19 +22,19 @@ public class FeatureCollection {
 	  *                                 https://tools.ietf.org/html/rfc7946
 	  *                               </a>
 	  *                                    */
-	    public static FeatureCollection fromJSON(String json) {
-		            try {
-				                ObjectMapper objectMapper = new ObjectMapper();
-						            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+	 public static FeatureCollection fromJSON(String json) {
+	 	try {
+	 		ObjectMapper objectMapper = new ObjectMapper();
+	 		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-							                FeatureCollection featureCollection = objectMapper.readValue(json, FeatureCollection.class);
-									            return featureCollection;
-										            } catch (JsonProcessingException jpe) {
-												                logger.error("JsonProcessingException:" + jpe);
-														            return null;
-															            } catch (Exception e) {
-																	                logger.error("Exception:" + e);
-																			            return null;
-																				            }
-			        }
-}
+	 		FeatureCollection featureCollection = objectMapper.readValue(json, FeatureCollection.class);
+	 		return featureCollection;
+	 	} catch (JsonProcessingException jpe) {
+	 		logger.error("JsonProcessingException:" + jpe);
+	 		return null;
+	 	} catch (Exception e) {
+	 		logger.error("Exception:" + e);
+	 		return null;
+	 	}
+	 }
+	}

@@ -12,8 +12,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 import com.nimbusds.oauth2.sdk.client.ClientReadRequest;
-
-import earthquakes.geojson.FeatureCollection;
+import java.util.List;
+import earthquakes.osm.Place;
 import earthquakes.services.LocationQueryService;
 import earthquakes.searches.LocSearch;
 
@@ -35,8 +35,8 @@ public class LocationsController {
 	    model.addAttribute("locSearch", locSearch);
 	    String json = l.getJSON(locSearch.getLocation());
 	    model.addAttribute("json", json);
-	    FeatureCollection featureCollection = FeatureCollection.fromJSON(json);
-	    model.addAttribute("featureCollection",featureCollection);
+	    List<Place> places = Place.listFromJSON(json);
+	    model.addAttribute("places",places);
 	    return "locations/results";
     }
 }

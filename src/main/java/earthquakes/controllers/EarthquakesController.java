@@ -25,8 +25,7 @@ public class EarthquakesController {
 
     @GetMapping("/earthquakes/search")
     public String getEarthquakesSearch(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken, EqSearch eqSearch) {
-	model.addAttribute("eqSearch", eqSearch);
-	//TODO: Actually search and add results to model
+		model.addAttribute("eqSearch", eqSearch);
         return "earthquakes/search";
     }
 
@@ -34,7 +33,7 @@ public class EarthquakesController {
     public String getEarthquakesResults(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken, EqSearch eqSearch){
 	    EarthquakeQueryService e = new EarthquakeQueryService();
 	    model.addAttribute("eqSearch", eqSearch);
-	    String json = e.getJSON(eqSearch.getDistance(), eqSearch.getMinmag());
+	    String json = e.getJSON(eqSearch.getDistance(), eqSearch.getMinmag(), eqSearch.getLat(), eqSearch.getLon());
 	    model.addAttribute("json", json);
 	    FeatureCollection featureCollection = FeatureCollection.fromJSON(json);
 	    model.addAttribute("featureCollection",featureCollection);

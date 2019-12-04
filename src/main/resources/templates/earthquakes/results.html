@@ -10,14 +10,20 @@
       <h2> Results</h2>
       <table class="table">
         <thead>
-	      <tr>Type</tr>
+	      <th>Location</th>
+	      <th>Distance</th>
+	      <th>Min Magnitude</th>
+	      <th>Count</th>
+	      <th>Latitude</th>
+	      <th>Longitude</th>
 	    </thead>
 	    <tbody>
-		  <td th:text="${featureCollection.metadata.title}"></td>
+		  <td th:text="${eqSearch.location}"></td>
 		  <td th:text="${eqSearch.distance}"></td>
 		  <td th:text="${eqSearch.minmag}"></td>
-		  <td th:text="${featureCollection.metadata.url}"></td>
 		  <td th:text="${featureCollection.metadata.count}"></td>
+		  <td th:text="${eqSearch.lat}"></td>
+		  <td th:text="${eqSearch.lon}"></td>
 	    </tbody>
       </table>
       <h3>Earthquakes</h3>
@@ -30,7 +36,6 @@
 		<tbody>
 		  <tr th:each="f: ${featureCollection.features}">
 		    <td><a th:href="'https://earthquake.usgs.gov/earthquakes/eventpage/' + ${f.id} + '/executive'" th:text="${f.id}"></td>
-		    <td th:text="${featureCollection.metadata.count}"></td>
 		    <td th:text="${f.properties.place}"></td>
 		    <td th:text="${f.properties.mag}"></td>
 		  </tr>

@@ -19,30 +19,29 @@ import org.springframework.web.client.HttpClientErrorException;
 
 <span class="nc" id="L20">	    private Logger logger = LoggerFactory.getLogger(EarthquakeQueryService.class);</span>
 
-	        public String getJSON(int distance, int minmag) {
-<span class="nc" id="L23">			RestTemplate restTemplate = new RestTemplate();</span>
-<span class="nc" id="L24">			HttpHeaders headers = new HttpHeaders();</span>
-<span class="nc" id="L25">			headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));</span>
-<span class="nc" id="L26">			headers.setContentType(MediaType.APPLICATION_JSON);</span>
-<span class="nc" id="L27">			HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(&quot;body&quot;, headers);</span>
-<span class="nc" id="L28">			String uri = &quot;https://earthquake.usgs.gov/fdsnws/event/1/query&quot;;</span>
-<span class="nc" id="L29">			double ucsbLat = 34.4140;</span>
-<span class="nc" id="L30">			double ucsbLong = -119.8489;</span>
-<span class="nc" id="L31">			String params = String.format(&quot;?format=geojson&amp;minmagnitude=%d&amp;maxradiuskm=%d&amp;latitude=%f&amp;longitude=%f&quot;,minmag,distance,ucsbLat,ucsbLong);</span>
-<span class="nc" id="L32">			String url = uri + params;</span>
-<span class="nc" id="L33">			logger.info(&quot;url=&quot; + url);</span>
+	    public String getJSON(int distance, int minmag, double lat, double lon) {
+<span class="nc" id="L23">	    	logger.info(distance + &quot;,&quot; + minmag + &quot;,&quot; + lat + &quot;,&quot; + lon);</span>
+<span class="nc" id="L24">			RestTemplate restTemplate = new RestTemplate();</span>
+<span class="nc" id="L25">			HttpHeaders headers = new HttpHeaders();</span>
+<span class="nc" id="L26">			headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));</span>
+<span class="nc" id="L27">			headers.setContentType(MediaType.APPLICATION_JSON);</span>
+<span class="nc" id="L28">			HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(&quot;body&quot;, headers);</span>
+<span class="nc" id="L29">			String uri = &quot;https://earthquake.usgs.gov/fdsnws/event/1/query&quot;;</span>
+<span class="nc" id="L30">			String params = String.format(&quot;?format=geojson&amp;minmagnitude=%d&amp;maxradiuskm=%d&amp;latitude=%f&amp;longitude=%f&quot;,minmag,distance,lat,lon);</span>
+<span class="nc" id="L31">			String url = uri + params;</span>
+<span class="nc" id="L32">			logger.info(&quot;url=&quot; + url);</span>
 
-<span class="nc" id="L35">			String retVal = &quot;&quot;;</span>
+<span class="nc" id="L34">			String retVal = &quot;&quot;;</span>
 			try{
-<span class="nc" id="L37">				ResponseEntity&lt;String&gt; re = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);</span>
-<span class="nc" id="L38">				MediaType contentType = re.getHeaders().getContentType();</span>
-<span class="nc" id="L39">				HttpStatus statusCode = re.getStatusCode();</span>
-<span class="nc" id="L40">				retVal = re.getBody();</span>
-<span class="nc" id="L41">			} catch (HttpClientErrorException e) {</span>
-<span class="nc" id="L42">				retVal = &quot;{\&quot;error\&quot;: \&quot;401: Unauthorized\&quot;}&quot;;</span>
-<span class="nc" id="L43">			}</span>
-<span class="nc" id="L44">			logger.info(&quot;from EarthquakeQuerySevice.getJSON: &quot; + retVal);</span>
-<span class="nc" id="L45">			return retVal;</span>
+<span class="nc" id="L36">				ResponseEntity&lt;String&gt; re = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);</span>
+<span class="nc" id="L37">				MediaType contentType = re.getHeaders().getContentType();</span>
+<span class="nc" id="L38">				HttpStatus statusCode = re.getStatusCode();</span>
+<span class="nc" id="L39">				retVal = re.getBody();</span>
+<span class="nc" id="L40">			} catch (HttpClientErrorException e) {</span>
+<span class="nc" id="L41">				retVal = &quot;{\&quot;error\&quot;: \&quot;401: Unauthorized\&quot;}&quot;;</span>
+<span class="nc" id="L42">			}</span>
+<span class="nc" id="L43">			logger.info(&quot;from EarthquakeQuerySevice.getJSON: &quot; + retVal);</span>
+<span class="nc" id="L44">			return retVal;</span>
 		}
 } 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

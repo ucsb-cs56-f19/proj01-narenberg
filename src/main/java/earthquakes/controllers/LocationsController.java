@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -54,5 +55,12 @@ public class LocationsController {
         Iterable<Location> locations= locationRepository.findAll();
         model.addAttribute("locations", locations);
         return "locations/index";
+    }
+
+    @PostMapping("/locations/add")
+    public String add(Location location, Model model) {
+      locationRepository.save(location);
+      model.addAttribute("locations", locationRepository.findAll());
+      return "locations/index";
     }
 }

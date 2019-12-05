@@ -70,7 +70,7 @@ public class HomePageTest {
         mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.TEXT_HTML))
                 .andExpect(status().isOk())
                 .andExpect(xpath("/html/body/div/nav/a").exists())
-                .andExpect(xpath("/html/body/div/nav/a").string("lab07"));
+                .andExpect(xpath("/html/body/div/nav/a").string("proj03"));
     }
 
     @Test

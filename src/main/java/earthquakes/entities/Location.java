@@ -25,7 +25,7 @@ public class Location {
     public void setPlaceId(String placeId) { this.placeId = placeId; }
 
     public String getName() { return name; }
-    public void getName(String name) { this.name = name; }
+    public void setName(String name) { this.name = name; }
    
     public double getLatitude() { return latitude; }
     public void setLatitude (double latitude) { this.latitude = latitude; }
